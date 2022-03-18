@@ -3,6 +3,8 @@ const hbs = require("hbs");
 const path = require("path");
 const app = express();
 
+const hostname = '0.0.0.0';
+
 const weatherData = require('../utils/weatherData');
 
 const port = process.env.PORT || 3000
@@ -17,6 +19,10 @@ app.set('view engine', 'hbs');
 app.set('views', viewsPath);
 hbs.registerPartials(partialsPath);
 app.use(express.static(publicStaticDirPath));
+
+// app.use((req,res,next)=>{
+//     res.status(404).send('Page not found')
+// });
 
 app.get('', (req, res) => {
     res.render('index', {
